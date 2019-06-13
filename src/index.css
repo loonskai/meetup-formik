@@ -85,3 +85,11 @@ button:hover,
 button:active {
   transition: background-color ease-out 0.2s;
 }
+
+.debugger {
+  width: 100%;
+  background: #363636;
+  color: #fff;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
