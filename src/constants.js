@@ -1,1 +1,2 @@
 export const SET_FIELD_VALUE = 'SET_FIELD_VALUE';
+export const SET_FIELD_TOUCHED = 'SET_FIELD_TOUCHED';

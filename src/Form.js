@@ -1,5 +1,5 @@
 import React, { useReducer } from 'react';
-import { SET_FIELD_VALUE } from './constants';
+import { SET_FIELD_VALUE, SET_FIELD_TOUCHED } from './constants';
 
 function reducer(state, { type, payload }) {
   switch (type) {
@@ -8,6 +8,14 @@ function reducer(state, { type, payload }) {
         ...state, // contains errors and touched
         values: {
           ...state.values,
+          ...payload
+        }
+      };
+    case SET_FIELD_TOUCHED:
+      return {
+        ...state, // contains errors and values
+        touched: {
+          ...state.touched,
           ...payload
         }
       };
@@ -26,15 +34,23 @@ function useFormik({ initialValues }) {
   });
 
   // When we run handleChange from our component it's gonna run dispatch SET_FIELD_VALUE
-  const handleChange = event => {
-    event.persist();
-    const {
-      target: { name, value }
-    } = event;
+  const handleChange = e => {
+    e.persist();
     dispatch({
       type: SET_FIELD_VALUE,
       payload: {
-        [name]: value
+        [e.target.name]: e.target.value
+      }
+    });
+  };
+
+  // When we run handleBlur from our component it's gonna run dispatch SET_FIELD_TOUCHED
+  const handleBlur = e => {
+    e.persist();
+    dispatch({
+      type: SET_FIELD_TOUCHED,
+      payload: {
+        [e.target.name]: true
       }
     });
   };
@@ -46,7 +62,8 @@ function useFormik({ initialValues }) {
 
   return {
     handleChange,
-    ...state
+    handleBlur,
+    ...state // we get values, touched, errors in our component
   };
 }
 
@@ -59,57 +76,68 @@ function Form() {
     }
   };
   const formik = useFormik(options);
-  const { handleSubmit, handleChange, ...state } = formik;
+  const {
+    handleSubmit,
+    handleBlur,
+    handleChange,
+    values,
+    touched,
+    errors
+  } = formik;
 
   return (
     <form onSubmit={handleSubmit}>
       <label>Email Address</label>
       <input
-        value={state.email}
+        value={values.email}
         onChange={handleChange}
+        onBlur={handleBlur}
         type="email"
         name="email"
         autoComplete="off"
       />
       <label>Username</label>
       <input
-        value={state.username}
+        value={values.username}
         onChange={handleChange}
+        onBlur={handleBlur}
         type="text"
         name="username"
         autoComplete="off"
       />
       <label>Password</label>
       <input
-        value={state.password}
+        value={values.password}
         onChange={handleChange}
+        onBlur={handleBlur}
         type="password"
         name="password"
         autoComplete="off"
       />
       {/* DEBBUGER WINDOW */}
       <p className="debugger">
+        <p>Formik state</p>
         <div>
-          <p>VALUES</p>
-          {Object.keys(state.values).map(key => (
+          <p>Values</p>
+          {Object.keys(values).map(key => (
             <p key={key}>
-              {key}: "{state.values[key]}"
+              {key}: "{values[key]}"
             </p>
           ))}
         </div>
         <div>
-          <p>ERRORS</p>
-          {Object.keys(state.errors).map(key => (
+          <p>Errors</p>
+          {Object.keys(errors).map(key => (
             <p key={key}>
-              {key}: "{state.errors[key]}"
+              {key}: "{errors[key]}"
             </p>
           ))}
         </div>
         <div>
-          <p>TOUCHED</p>
-          {Object.keys(state.touched).map(key => (
+          <p>Touched</p>
+          {Object.keys(touched).map(key => (
             <p key={key}>
-              {key}: "{state.touched[key]}"
+              {key}: "{touched[key]}"
             </p>
           ))}
         </div>
