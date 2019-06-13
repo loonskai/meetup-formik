@@ -1,5 +1,13 @@
 import { useReducer, useEffect } from 'react';
-import { SET_FIELD_VALUE, SET_FIELD_TOUCHED, SET_ERRORS } from './constants';
+import {
+  SET_FIELD_VALUE,
+  SET_FIELD_TOUCHED,
+  SET_ERRORS,
+  SUBMIT_ATTEMPT,
+  SUBMIT_SUCCESS,
+  SUBMIT_FAILURE
+} from './constants';
+import { setNestedObjectValues } from './utils';
 
 function reducer(state, { type, payload }) {
   switch (type) {
@@ -24,6 +32,23 @@ function reducer(state, { type, payload }) {
         ...state,
         errors: payload // Your errors are always new because you replace them on each type
       };
+    case SUBMIT_ATTEMPT:
+      return {
+        ...state,
+        isSubmitting: true,
+        touched: setNestedObjectValues(state.values, true) // Recurse object and set every field 'touched' to true
+      };
+    case SUBMIT_SUCCESS:
+      return {
+        ...state,
+        isSubmitting: false
+      };
+    case SUBMIT_FAILURE:
+      return {
+        ...state,
+        isSubmitting: false,
+        submitError: payload
+      };
     default:
       return state;
   }
@@ -35,7 +60,8 @@ function useFormik({ initialValues, onSubmit, validate }) {
   const [state, dispatch] = useReducer(reducer, {
     values: initialValues,
     errors: {},
-    touched: {}
+    touched: {},
+    isSubmitting: false
   });
 
   // Validation
@@ -68,10 +94,23 @@ function useFormik({ initialValues, onSubmit, validate }) {
     });
   };
 
-  const handleSubmit = e => {
+  const handleSubmit = async e => {
     e.preventDefault();
-    onSubmit(state.values);
     // Validate inputs and touch every input just to be sure if user sees all error messages
+    dispatch({ type: SUBMIT_ATTEMPT });
+    const errors = validate(state.values);
+    if (!Object.keys(errors).length) {
+      try {
+        await onSubmit(state.values);
+        dispatch({ type: SUBMIT_SUCCESS });
+      } catch (submitError) {
+        // Submit error is different from or component validation error. It may come from API or smth like this
+        dispatch({ type: SUBMIT_FAILURE, payload: submitError });
+      }
+    } else {
+      dispatch({ type: SET_ERRORS, payload: errors });
+      dispatch({ type: SUBMIT_FAILURE });
+    }
   };
 
   return {

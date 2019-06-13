@@ -1,7 +1,7 @@
 import React from 'react';
 
 export default function Debug({ formik }) {
-  const { values, errors, touched } = formik;
+  const { values, errors, touched, isSubmitting } = formik;
   return (
     <div className="debugger">
       <p>Formik state</p>
@@ -28,6 +28,9 @@ export default function Debug({ formik }) {
             {key}: "{touched[key]}"
           </p>
         ))}
+      </div>
+      <div>
+        <p key="isSubmitted">isSubmitting: {isSubmitting.toString()}</p>
       </div>
     </div>
   );

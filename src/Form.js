@@ -3,6 +3,8 @@ import React from 'react';
 import useFormik from './useFormik';
 import Debug from './Debug';
 
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+
 function Form() {
   const formik = useFormik({
     // first
@@ -12,7 +14,8 @@ function Form() {
       password: ''
     },
     // second. This function will be executed inside useFormik when run handleSubmit
-    onSubmit: values => {
+    onSubmit: async values => {
+      await sleep(1000); // When timer resolves promise, we dispatch SUBMIT_SUCCESS in case if no errors
       console.log(values);
     },
     // third
@@ -31,11 +34,13 @@ function Form() {
     handleSubmit,
     values,
     touched,
-    errors
+    errors,
+    submitError
   } = formik;
 
   return (
     <form onSubmit={handleSubmit}>
+      {submitError}
       <label>Email Address</label>
       <input
         value={values.email}
