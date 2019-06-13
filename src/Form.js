@@ -46,7 +46,7 @@ function useFormik({ initialValues }) {
 
   return {
     handleChange,
-    state
+    ...state
   };
 }
 
@@ -87,13 +87,34 @@ function Form() {
         name="password"
         autoComplete="off"
       />
-      <div className="debugger">
-        {Object.keys(state.state.values).map(key => (
-          <p key={key}>
-            {key}: "{state.state.values[key]}"
-          </p>
-        ))}
-      </div>
+      {/* DEBBUGER WINDOW */}
+      <p className="debugger">
+        <div>
+          <p>VALUES</p>
+          {Object.keys(state.values).map(key => (
+            <p key={key}>
+              {key}: "{state.values[key]}"
+            </p>
+          ))}
+        </div>
+        <div>
+          <p>ERRORS</p>
+          {Object.keys(state.errors).map(key => (
+            <p key={key}>
+              {key}: "{state.errors[key]}"
+            </p>
+          ))}
+        </div>
+        <div>
+          <p>TOUCHED</p>
+          {Object.keys(state.touched).map(key => (
+            <p key={key}>
+              {key}: "{state.touched[key]}"
+            </p>
+          ))}
+        </div>
+      </p>
+      {/* DEBBUGER WINDOW  */}
       <button type="submit">Sign up</button>
     </form>
   );

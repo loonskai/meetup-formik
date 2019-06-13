@@ -87,9 +87,23 @@ button:active {
 }
 
 .debugger {
+  position: absolute;
+  top: 0;
+  left: 110%;
   width: 100%;
   background: #363636;
   color: #fff;
   padding: 1rem;
   margin-bottom: 1rem;
+}
+
+.debugger div {
+  padding: 0.25rem 1rem;
+  margin-bottom: 1rem;
+  border: 1px solid #7b878b;
+}
+
+.debugger div p:first-child {
+  width: 100%;
+  text-align: center;
 }
