@@ -1,2 +1,3 @@
 export const SET_FIELD_VALUE = 'SET_FIELD_VALUE';
 export const SET_FIELD_TOUCHED = 'SET_FIELD_TOUCHED';
+export const SET_ERRORS = 'SET_ERRORS';

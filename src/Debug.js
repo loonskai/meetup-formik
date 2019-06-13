@@ -3,7 +3,7 @@ import React from 'react';
 export default function Debug({ formik }) {
   const { values, errors, touched } = formik;
   return (
-    <p className="debugger">
+    <div className="debugger">
       <p>Formik state</p>
       <div>
         <p>Values</p>
@@ -29,6 +29,6 @@ export default function Debug({ formik }) {
           </p>
         ))}
       </div>
-    </p>
+    </div>
   );
 }
