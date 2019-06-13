@@ -1,14 +1,53 @@
-import React from 'react';
+import React, { useReducer } from 'react';
+
+const initialState = {
+  email: '',
+  username: '',
+  password: ''
+};
 
 function Form() {
+  const [state, setState] = useReducer(
+    (prevState, updatedValues) => ({ ...prevState, ...updatedValues }),
+    initialState
+  );
+
+  const handleChange = ({ target: { name, value } }) =>
+    setState({
+      [name]: value
+    });
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    console.log(state);
+  };
+
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       <label>Email Address</label>
-      <input type="email" name="email" required autoComplete="off" />
+      <input
+        value={state.email}
+        onChange={handleChange}
+        type="email"
+        name="email"
+        autoComplete="off"
+      />
       <label>Username</label>
-      <input type="text" name="username" required autoComplete="off" />
+      <input
+        value={state.username}
+        onChange={handleChange}
+        type="text"
+        name="username"
+        autoComplete="off"
+      />
       <label>Password</label>
-      <input type="password" name="password" required autoComplete="off" />
+      <input
+        value={state.password}
+        onChange={handleChange}
+        type="password"
+        name="password"
+        autoComplete="off"
+      />
       <button type="submit">Sign up</button>
     </form>
   );
