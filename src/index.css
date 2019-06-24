@@ -10,7 +10,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #adb0f7;
+  background: #282b2f;
   font-family: 'Acme', sans-serif;
 }
 
@@ -84,4 +84,23 @@ button,
 button:hover,
 button:active {
   transition: background-color ease-out 0.2s;
+}
+
+.error {
+  margin: 0;
+  margin-top: -1rem;
+  margin-bottom: 1rem;
+  color: red;
+  font-size: 0.9rem;
+}
+
+.input-error,
+.input-error:focus {
+  border-color: red;
+}
+
+.spinner {
+  position: absolute;
+  bottom: 10px;
+  right: 20px;
 }
