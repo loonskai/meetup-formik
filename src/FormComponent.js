@@ -1,6 +1,7 @@
 import React from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-import validate from './validate';
+// import validate from './validate';
+import validationSchema from './validationSchema';
 
 function FormComponent() {
   const initialValues = {
@@ -20,7 +21,8 @@ function FormComponent() {
   return (
     <Formik
       initialValues={initialValues}
-      validate={validate}
+      // validate={validate}
+      validationSchema={validationSchema}
       onSubmit={handleSubmit}
     >
       {({ isSubmitting }) => (
