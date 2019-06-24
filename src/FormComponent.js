@@ -1,5 +1,6 @@
 import React from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
+import validate from './validate';
 
 function FormComponent() {
   const initialValues = {
@@ -8,21 +9,12 @@ function FormComponent() {
     password: ''
   };
 
-  const validate = values => {
-    let errors = {};
-    if (!values.email) {
-      errors.email = 'Email is required';
-    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)) {
-      errors.email = 'Invalid email address';
-    }
-    return errors;
-  };
-
-  const handleSubmit = (values, { setSubmitting }) => {
+  const handleSubmit = (values, { setSubmitting, resetForm }) => {
     setTimeout(() => {
       console.log(JSON.stringify(values, null, 2));
       setSubmitting(false);
-    }, 500);
+      resetForm(initialValues);
+    }, 1000);
   };
 
   return (
@@ -43,6 +35,7 @@ function FormComponent() {
           <Field type="password" name="password" autoComplete="off" />
           <ErrorMessage name="password" component="div" className="error" />
           <button type="submit">Sign up</button>
+          {isSubmitting && <p className="spinner">Loading...</p>}
         </Form>
       )}
     </Formik>
