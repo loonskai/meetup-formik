@@ -24,8 +24,7 @@ function FormComponent() {
       // validate={validate}
       validationSchema={validationSchema}
       onSubmit={handleSubmit}
-    >
-      {({ isSubmitting }) => (
+      render={({ isSubmitting }) => (
         <Form>
           <label>Email Address</label>
           <Field type="email" name="email" autoComplete="off" />
@@ -40,7 +39,7 @@ function FormComponent() {
           {isSubmitting && <p className="spinner">Loading...</p>}
         </Form>
       )}
-    </Formik>
+    />
   );
 }
 
