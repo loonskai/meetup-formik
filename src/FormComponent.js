@@ -10,11 +10,16 @@ function FormComponent() {
     password: ''
   };
 
-  const handleSubmit = (values, { setSubmitting, resetForm }) => {
+  const handleSubmit = (values, { setSubmitting, resetForm, setErrors }) => {
     setTimeout(() => {
-      console.log(JSON.stringify(values, null, 2));
-      setSubmitting(false);
-      resetForm(initialValues);
+      if (values.email === 'admin@mail.com') {
+        setSubmitting(false);
+        setErrors({ email: 'Email already in use' });
+      } else {
+        setSubmitting(false);
+        resetForm(initialValues);
+        console.log(JSON.stringify(values, null, 2));
+      }
     }, 1000);
   };
 
