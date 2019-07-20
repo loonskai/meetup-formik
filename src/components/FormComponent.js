@@ -11,27 +11,28 @@ function FormComponent() {
     password: ''
   };
 
-  const handleSubmit = (values, { setSubmitting, resetForm, setErrors }) => {
-    /*     setTimeout(() => {
-      if (values.email === 'admin@mail.com') {
+  const customHandleSubmit = (values, actions) => {
+    const { setSubmitting, resetForm, setErrors } = actions;
+    axios
+      .post('/signup', values)
+      .then((response, error) => {
+        if (error) {
+        }
         setSubmitting(false);
-        setErrors({ email: 'Email already in use' });
-      } else {
+        console.log(response);
+      })
+      .catch(error => {
+        const message = error.response.data;
         setSubmitting(false);
-        resetForm(initialValues);
-        console.log(JSON.stringify(values, null, 2));
-      }
-    }, 1000); */
-    axios.post('/signup', values).then(response => {
-      console.log(response);
-    });
+        setErrors({ email: message });
+      });
   };
 
   return (
     <Formik
       initialValues={initialValues}
-      // validationSchema={validationSchema}
-      onSubmit={handleSubmit}
+      validationSchema={validationSchema}
+      onSubmit={customHandleSubmit}
       render={({ isSubmitting }) => (
         <Form>
           <label>Email Address</label>
