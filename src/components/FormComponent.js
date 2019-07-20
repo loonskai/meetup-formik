@@ -11,27 +11,23 @@ function FormComponent() {
     password: ''
   };
 
-  const customHandleSubmit = (values, actions) => {
+  const customHandleSubmit = async (values, actions) => {
     const { setSubmitting, resetForm, setErrors } = actions;
-    axios
-      .post('/signup', values)
-      .then((response, error) => {
-        if (error) {
-        }
-        setSubmitting(false);
-        console.log(response);
-      })
-      .catch(error => {
-        const message = error.response.data;
-        setSubmitting(false);
-        setErrors({ email: message });
-      });
+    try {
+      const response = await axios.post('/signup', values);
+      setSubmitting(false);
+      alert(response.data);
+    } catch (error) {
+      const message = error.response.data;
+      setSubmitting(false);
+      setErrors({ email: message });
+    }
   };
 
   return (
     <Formik
       initialValues={initialValues}
-      validationSchema={validationSchema}
+      // validationSchema={validationSchema}
       onSubmit={customHandleSubmit}
       render={({ isSubmitting }) => (
         <Form>
