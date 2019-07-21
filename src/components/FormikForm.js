@@ -5,7 +5,7 @@ import Modal from './Modal';
 import axios from '../mockAdapter';
 import validationSchema from '../validationSchema';
 
-function FormComponent() {
+function FormikForm() {
   const [data, setData] = useState(null);
   const initialValues = {
     email: '',
@@ -51,4 +51,4 @@ function FormComponent() {
   );
 }
 
-export default FormComponent;
+export default FormikForm;

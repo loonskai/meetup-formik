@@ -10,12 +10,13 @@
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-modal": "^3.9.1",
+    "react-router-dom": "^5.0.1",
     "react-scripts": "3.0.1",
     "yup": "^0.27.0"
   },
   "scripts": {
     "start": "react-scripts start",
-    "start:https": "HTTPS=true yarn start",
+    "start:https": "SKIP_PREFLIGHT_CHECK=true HTTPS=true yarn start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
