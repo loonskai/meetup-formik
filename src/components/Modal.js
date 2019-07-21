@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { default as ReactModal } from 'react-modal';
-import '../modal.css';
+import '../styles/modal.css';
 
 ReactModal.setAppElement('#modal');
 

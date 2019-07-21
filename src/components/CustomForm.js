@@ -1,5 +1,7 @@
 import React, { useReducer } from 'react';
 
+import Debug from './Debug';
+
 function CustomForm() {
   const initState = { email: '', username: '', password: '' };
 
@@ -42,6 +44,7 @@ function CustomForm() {
         autoComplete="off"
       />
       <button type="submit">Sign up</button>
+      <Debug data={state} />
     </form>
   );
 }
