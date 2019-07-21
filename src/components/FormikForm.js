@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 
+import Debug from './Debug';
 import Modal from './Modal';
 import axios from '../mockAdapter';
 import validationSchema from '../validationSchema';
@@ -14,11 +15,13 @@ function FormikForm() {
   };
 
   const customHandleSubmit = async (values, actions) => {
+    console.log(actions);
     const { setSubmitting, resetForm, setErrors } = actions;
     try {
       const response = await axios.post('/signup', values);
       setSubmitting(false);
       setData({ message: response.data });
+      resetForm();
     } catch (error) {
       const message = error.response.data;
       setSubmitting(false);
@@ -29,9 +32,9 @@ function FormikForm() {
   return (
     <Formik
       initialValues={initialValues}
-      // validationSchema={validationSchema}
+      validationSchema={validationSchema}
       onSubmit={customHandleSubmit}
-      render={({ isSubmitting }) => (
+      render={props => (
         <Form>
           <label>Email Address</label>
           <Field type="text" name="email" />
@@ -43,7 +46,8 @@ function FormikForm() {
           <Field type="password" name="password" />
           <ErrorMessage name="password" component="div" className="error" />
           <button type="submit">Sign up</button>
-          {isSubmitting && <p className="spinner">Loading...</p>}
+          {props.isSubmitting && <p className="spinner">Loading...</p>}
+          <Debug data={props} />
           <Modal data={data} />
         </Form>
       )}
