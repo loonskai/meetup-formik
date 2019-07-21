@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 
+import Modal from './Modal';
 import axios from '../mockAdapter';
 import validationSchema from '../validationSchema';
 
 function FormComponent() {
+  const [data, setData] = useState(null);
   const initialValues = {
     email: '',
     username: '',
@@ -16,7 +18,7 @@ function FormComponent() {
     try {
       const response = await axios.post('/signup', values);
       setSubmitting(false);
-      alert(response.data);
+      setData({ message: response.data });
     } catch (error) {
       const message = error.response.data;
       setSubmitting(false);
@@ -42,6 +44,7 @@ function FormComponent() {
           <ErrorMessage name="password" component="div" className="error" />
           <button type="submit">Sign up</button>
           {isSubmitting && <p className="spinner">Loading...</p>}
+          <Modal data={data} />
         </Form>
       )}
     />
