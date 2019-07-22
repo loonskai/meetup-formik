@@ -15,7 +15,6 @@ function FormikForm() {
   };
 
   const customHandleSubmit = async (values, actions) => {
-    console.log(actions);
     const { setSubmitting, resetForm, setErrors } = actions;
     try {
       const response = await axios.post('/signup', values);
