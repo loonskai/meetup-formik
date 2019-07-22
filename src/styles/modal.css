@@ -1,0 +1,15 @@
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  right: auto;
+  bottom: auto;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+  border-radius: 10px;
+  background: #92b3a0;
+  color: #fff;
+  padding: 20px;
+  border: none;
+  outline: none;
+}
