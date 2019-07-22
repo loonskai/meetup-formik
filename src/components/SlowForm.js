@@ -1,5 +1,5 @@
 import React from 'react';
-import { Formik, Form, FastField } from 'formik:old';
+import { Formik, Form, Field } from 'formik:old';
 
 import Debug from './Debug';
 import validationSchema from '../validationSchema';
@@ -38,13 +38,13 @@ function FastForm() {
       onSubmit={customHandleSubmit}
       render={props => (
         <Form>
-          <h2>Fast form</h2>
+          <h2>Slow form</h2>
           <label>Email Address</label>
-          <FastField type="text" name="email" component={CustomField} />
+          <Field type="text" name="email" component={CustomField} />
           <label>Username</label>
-          <FastField type="text" name="username" component={CustomField} />
+          <Field type="text" name="username" component={CustomField} />
           <label>Password</label>
-          <FastField type="password" name="password" component={CustomField} />
+          <Field type="password" name="password" component={CustomField} />
           <button type="submit">Sign up</button>
           <Debug data={props.values} />
         </Form>
