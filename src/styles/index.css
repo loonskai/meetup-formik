@@ -25,6 +25,7 @@ body {
 }
 
 form {
+  position: relative;
   max-width: 1000px;
   padding: 3rem 2rem;
   display: flex;
@@ -114,10 +115,4 @@ button:active {
 .input-error,
 .input-error:focus {
   border-color: red;
-}
-
-.spinner {
-  position: absolute;
-  bottom: 10px;
-  right: 20px;
 }

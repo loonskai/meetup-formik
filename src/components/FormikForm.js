@@ -3,6 +3,7 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 
 import Debug from './Debug';
 import Modal from './Modal';
+import Spinner from './Spinner';
 import axios from '../mockAdapter';
 import validationSchema from '../validationSchema';
 
@@ -52,9 +53,8 @@ function FormikForm() {
               <ErrorMessage name="password" component="div" className="error" />
             </div>
             <button type="submit">Sign up</button>
-            {props.isSubmitting ||
-              (true && <p className="spinner">Loading...</p>)}
             <Modal data={data} />
+            {props.isSubmitting && <Spinner />}
           </Form>
           <Debug data={props} />
         </div>
