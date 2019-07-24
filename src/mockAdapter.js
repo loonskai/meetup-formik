@@ -11,7 +11,7 @@ mock.onPost('/signup').reply(({ data }) => {
   if (users.find(email => email === json.email)) {
     return [500, 'User already exists'];
   }
-  return [200, 'Successfully signed up'];
+  return [200, 'Success'];
 });
 
 export default axios;

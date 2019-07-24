@@ -10,21 +10,36 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  align-content: center;
   background: #282b2f;
   font-family: 'Acme', sans-serif;
 }
 
-form {
+.form-container {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  max-width: 400px;
+  display: flex;
+  align-items: center;
+}
+
+form {
+  max-width: 1000px;
   padding: 3rem 2rem;
   display: flex;
+  align-content: center;
   flex-wrap: wrap;
   background: #fff;
   border-radius: 1rem;
+}
+
+.field-group {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
 }
 
 label,
@@ -35,17 +50,18 @@ input {
 label {
   margin-bottom: 0.5rem;
   color: #729fbd;
-  font-size: 1.2rem;
+  font-size: 2rem;
   text-align: center;
 }
 
 input {
+  margin-bottom: 3rem;
   padding: 0.5rem;
-  margin-bottom: 1.25rem;
   border: 2px solid #729fbd;
   border-radius: 0.5rem;
   color: #464344;
   font-family: 'Acme', sans-serif;
+  font-size: 2rem;
 }
 
 input:focus {
@@ -61,7 +77,7 @@ input:focus {
 button {
   border: none;
   padding: 0.5rem 2rem;
-  margin: 0.5rem auto;
+  margin: 1rem auto;
   cursor: pointer;
   background: #729fbd;
   color: #fff;
@@ -69,7 +85,7 @@ button {
   text-transform: uppercase;
   outline: none;
   border-radius: 0.5rem;
-  font-size: 1.2rem;
+  font-size: 2rem;
 }
 
 button:hover {
@@ -87,11 +103,12 @@ button:active {
 }
 
 .error {
+  position: absolute;
+  top: 7rem;
   width: 100%;
-  margin: 0;
-  margin-top: -1rem;
-  color: red;
-  font-size: 0.9rem;
+  color: #af3124;
+  font-size: 1.5rem;
+  text-align: center;
 }
 
 .input-error,

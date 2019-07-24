@@ -31,24 +31,33 @@ function FormikForm() {
   return (
     <Formik
       initialValues={initialValues}
-      validationSchema={validationSchema}
+      // validationSchema={validationSchema}
       onSubmit={customHandleSubmit}
       render={props => (
-        <Form>
-          <label>Email Address</label>
-          <Field type="text" name="email" />
-          <ErrorMessage name="email" component="div" className="error" />
-          <label>Username</label>
-          <Field type="text" name="username" />
-          <ErrorMessage name="username" component="div" className="error" />
-          <label>Password</label>
-          <Field type="password" name="password" />
-          <ErrorMessage name="password" component="div" className="error" />
-          <button type="submit">Sign up</button>
-          {props.isSubmitting && <p className="spinner">Loading...</p>}
+        <div className="form-container">
+          <Form>
+            <div className="field-group">
+              <label>Email Address</label>
+              <Field type="text" name="email" />
+              <ErrorMessage name="email" component="div" className="error" />
+            </div>
+            <div className="field-group">
+              <label>Username</label>
+              <Field type="text" name="username" />
+              <ErrorMessage name="username" component="div" className="error" />
+            </div>
+            <div className="field-group">
+              <label>Password</label>
+              <Field type="password" name="password" />
+              <ErrorMessage name="password" component="div" className="error" />
+            </div>
+            <button type="submit">Sign up</button>
+            {props.isSubmitting ||
+              (true && <p className="spinner">Loading...</p>)}
+            <Modal data={data} />
+          </Form>
           <Debug data={props} />
-          <Modal data={data} />
-        </Form>
+        </div>
       )}
     />
   );
