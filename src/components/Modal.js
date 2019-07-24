@@ -1,34 +1,31 @@
-import React, { useState, useEffect } from 'react';
-import { default as ReactModal } from 'react-modal';
+import React, { useState, useEffect, useRef, useLayoutEffect } from 'react';
 import '../styles/modal.css';
 
-ReactModal.setAppElement('#modal');
-
 export default function Modal({ data }) {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
 
-  const afterOpenModal = () => {
-    setTimeout(closeModal, 1500);
-  };
-
-  const closeModal = () => setIsOpen(false);
-
-  useEffect(() => {
+  const firstUpdate = useRef(true);
+  useLayoutEffect(() => {
+    if (firstUpdate.current) {
+      firstUpdate.current = false;
+      return;
+    }
     if (data) {
       setIsOpen(true);
     }
   }, [data]);
 
+  useEffect(() => {
+    if (isOpen) {
+      setTimeout(() => setIsOpen(false), 1500);
+    }
+  }, [isOpen]);
+
   return (
-    data && (
-      <ReactModal
-        isOpen={isOpen}
-        onAfterOpen={afterOpenModal}
-        onRequestClose={closeModal}
-        className="modal"
-      >
-        {data.message}
-      </ReactModal>
+    isOpen && (
+      <div className="overlay">
+        <div className="modal">{data.message}</div>
+      </div>
     )
   );
 }

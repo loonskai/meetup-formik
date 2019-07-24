@@ -1,5 +1,5 @@
 :root {
-  --spinner-color: #fff;
+  --spinner-color: #719fbd;
 }
 
 .spinner-container {
@@ -12,7 +12,7 @@
   justify-content: center;
   align-items: center;
   border-radius: inherit;
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(255, 255, 255, 0.7);
 }
 
 .fulfilling-square-spinner,

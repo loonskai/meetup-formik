@@ -32,7 +32,7 @@ function FormikForm() {
   return (
     <Formik
       initialValues={initialValues}
-      // validationSchema={validationSchema}
+      validationSchema={validationSchema}
       onSubmit={customHandleSubmit}
       render={props => (
         <div className="form-container">
