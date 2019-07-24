@@ -18,34 +18,42 @@ function CustomForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>Email Address</label>
-      <input
-        value={state.email}
-        onChange={handleChange}
-        type="email"
-        name="email"
-        autoComplete="off"
-      />
-      <label>Username</label>
-      <input
-        value={state.username}
-        onChange={handleChange}
-        type="text"
-        name="username"
-        autoComplete="off"
-      />
-      <label>Password</label>
-      <input
-        value={state.password}
-        onChange={handleChange}
-        type="password"
-        name="password"
-        autoComplete="off"
-      />
-      <button type="submit">Sign up</button>
+    <div className="form-container">
+      <form onSubmit={handleSubmit}>
+        <div className="field-group">
+          <label>Email Address</label>
+          <input
+            value={state.email}
+            onChange={handleChange}
+            type="email"
+            name="email"
+            autoComplete="off"
+          />
+        </div>
+        <div className="field-group">
+          <label>Username</label>
+          <input
+            value={state.username}
+            onChange={handleChange}
+            type="text"
+            name="username"
+            autoComplete="off"
+          />
+        </div>
+        <div className="field-group">
+          <label>Password</label>
+          <input
+            value={state.password}
+            onChange={handleChange}
+            type="password"
+            name="password"
+            autoComplete="off"
+          />
+        </div>
+        <button type="submit">Sign up</button>
+      </form>
       <Debug data={state} />
-    </form>
+    </div>
   );
 }
 

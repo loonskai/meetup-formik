@@ -1,24 +1,9 @@
 import React from 'react';
 import { Formik, Form, Field } from 'formik:old';
 
+import ColorBorderField from './ColorBorderField';
 import Debug from './Debug';
 import validationSchema from '../validationSchema';
-
-class CustomField extends React.Component {
-  constructor(props) {
-    super(props);
-    this.myRef = React.createRef();
-  }
-
-  componentDidUpdate() {
-    this.myRef.current.style.borderColor =
-      '#' + (((1 << 24) * Math.random()) | 0).toString(16);
-  }
-
-  render() {
-    return <input ref={this.myRef} {...this.props.field} />;
-  }
-}
 
 function FastForm() {
   const initialValues = {
@@ -37,17 +22,29 @@ function FastForm() {
       validationSchema={validationSchema}
       onSubmit={customHandleSubmit}
       render={props => (
-        <Form>
-          <h2>Slow form</h2>
-          <label>Email Address</label>
-          <Field type="text" name="email" component={CustomField} />
-          <label>Username</label>
-          <Field type="text" name="username" component={CustomField} />
-          <label>Password</label>
-          <Field type="password" name="password" component={CustomField} />
-          <button type="submit">Sign up</button>
+        <div className="form-container">
+          <Form>
+            <h2>{'<Field />'}</h2>
+            <div className="field-group">
+              <label>Email Address</label>
+              <Field type="text" name="email" component={ColorBorderField} />
+            </div>
+            <div className="field-group">
+              <label>Username</label>
+              <Field type="text" name="username" component={ColorBorderField} />
+            </div>
+            <div className="field-group">
+              <label>Password</label>
+              <Field
+                type="password"
+                name="password"
+                component={ColorBorderField}
+              />
+            </div>
+            <button type="submit">Sign up</button>
+          </Form>
           <Debug data={props.values} />
-        </Form>
+        </div>
       )}
     />
   );

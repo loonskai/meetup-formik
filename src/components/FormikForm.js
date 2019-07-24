@@ -39,17 +39,17 @@ function FormikForm() {
           <Form>
             <div className="field-group">
               <label>Email Address</label>
-              <Field type="text" name="email" />
+              <Field type="text" name="email" autoComplete="off" />
               <ErrorMessage name="email" component="div" className="error" />
             </div>
             <div className="field-group">
               <label>Username</label>
-              <Field type="text" name="username" />
+              <Field type="text" name="username" autoComplete="off" />
               <ErrorMessage name="username" component="div" className="error" />
             </div>
             <div className="field-group">
               <label>Password</label>
-              <Field type="password" name="password" />
+              <Field type="password" name="password" autoComplete="off" />
               <ErrorMessage name="password" component="div" className="error" />
             </div>
             <button type="submit">Sign up</button>
