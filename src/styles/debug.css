@@ -1,7 +1,5 @@
-.debug {
-  width: 1000px;
-  height: 660px;
-  margin-left: 3rem;
+.debug,
+.debug--mini {
   font-size: 1.8rem;
   line-height: 1.9rem;
   background-color: #4f565c;
@@ -10,4 +8,14 @@
   padding: 10px;
   overflow: scroll;
   text-overflow: ellipsis;
+}
+
+.debug {
+  width: 1000px;
+  height: 660px;
+  margin-left: 3rem;
+}
+
+.debug--mini {
+  width: 100%;
 }

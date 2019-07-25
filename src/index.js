@@ -7,6 +7,7 @@ import CustomForm from './components/CustomForm';
 import FastForm from './components/FastForm';
 import SlowForm from './components/SlowForm';
 import ArrayFields from './components/ArrayFields';
+import Hooks from './components/Hooks';
 import FormikHOC from './containers/withFormik';
 import './styles/index.css';
 
@@ -18,6 +19,7 @@ ReactDOM.render(
     <Route path="/slow" component={SlowForm} />
     <Route path="/fast" component={FastForm} />
     <Route path="/field-array" component={ArrayFields} />
+    <Route path="/hooks" component={Hooks} />
   </Router>,
   document.getElementById('root')
 );
