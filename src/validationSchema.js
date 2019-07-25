@@ -6,7 +6,8 @@ const validationSchema = Yup.object().shape({
     .email('Invalid email format'),
   username: Yup.string()
     .required('Username is required')
-    .min(3, 'Username is too short'),
+    .min(3, 'Username is too short')
+    .matches(/^((?!(Alexey)).)*$/i, 'Must not be Alexey'),
   password: Yup.string()
     .required('Password is required')
     .matches(
