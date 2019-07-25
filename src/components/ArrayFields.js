@@ -19,9 +19,7 @@ const ArrayFields = () => {
           <Form>
             <FieldArray
               name="animals"
-              render={(
-                { push, remove, insert, swap } // arrayHelpers
-              ) =>
+              render={({ push, remove, insert, swap }) =>
                 values.animals && (
                   <div>
                     {values.animals.map((animal, index, arr) => (
@@ -31,7 +29,11 @@ const ArrayFields = () => {
                         render={props => (
                           <div className="field-group">
                             <div className="array-field">
-                              <input {...props.field} type={animal.type} />
+                              <input
+                                {...props.field}
+                                type={animal.type}
+                                autoComplete="off"
+                              />
                               <button
                                 className="array-field__add"
                                 onClick={() => remove(index)}
@@ -52,7 +54,6 @@ const ArrayFields = () => {
                       />
                     ))}
                     <button onClick={() => push({ name: '🐣 ', type: 'text' })}>
-                      {/* We push new items into array on every click */}
                       One more
                     </button>
                   </div>

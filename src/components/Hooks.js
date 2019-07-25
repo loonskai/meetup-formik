@@ -39,7 +39,7 @@ export default function Hooks() {
       render={props => (
         <div className="form-container">
           <form onSubmit={props.handleSubmit}>
-            <MyTextField name="email" type="email" label="Email" />
+            <MyTextField name="email" type="text" label="Email" />
             <button type="submit">Submit</button>
           </form>
         </div>
