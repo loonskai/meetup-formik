@@ -116,3 +116,22 @@ button:active {
 .input-error:focus {
   border-color: red;
 }
+
+.array-field {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.array-field__add {
+  height: 65px;
+  margin: 0;
+  margin-left: 1rem;
+}
+
+.array-field__swap {
+  height: 65px;
+  margin-top: -2rem;
+  display: flex;
+  justify-content: center;
+}

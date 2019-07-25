@@ -2,8 +2,8 @@ import React from 'react';
 import { withFormik } from 'formik';
 
 import Debug from '../components/Debug';
-import Modal from '../components/Modal';
-import axios from '../mockAdapter';
+// import Modal from '../components/Modal';
+// import axios from '../mockAdapter';
 import validationSchema from '../validationSchema';
 
 const Form = ({ history, location, match, ...formikProps }) => {
@@ -69,7 +69,7 @@ export default withFormik({
   handleSubmit: async (values, actions) => {
     const { setSubmitting, resetForm, setErrors } = actions;
     try {
-      const response = await axios.post('/signup', values);
+      // const response = await axios.post('/signup', values);
       setSubmitting(false);
       // setData({ message: response.data });
       resetForm();
